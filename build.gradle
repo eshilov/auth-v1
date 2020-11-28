@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.4.0'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'com.diffplug.spotless' version '5.8.2'
 }
 
 group = 'com.eshilov'
@@ -29,4 +30,10 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		googleJavaFormat('1.9').aosp()
+	}
 }
