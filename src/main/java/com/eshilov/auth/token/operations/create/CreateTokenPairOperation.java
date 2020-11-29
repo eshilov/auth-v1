@@ -3,7 +3,7 @@ package com.eshilov.auth.token.operations.create;
 import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
 import static com.eshilov.auth.token.model.TokenType.ACCESS;
 import static com.eshilov.auth.token.model.TokenType.REFRESH;
-import static com.eshilov.utils.DateUtils.convertLocalDateTimeToDate;
+import static com.eshilov.auth.utils.DateUtils.convertLocalDateTimeToDate;
 import static java.time.LocalDateTime.now;
 
 import com.eshilov.auth.AppProperties;

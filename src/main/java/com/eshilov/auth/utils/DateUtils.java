@@ -1,4 +1,4 @@
-package com.eshilov.utils;
+package com.eshilov.auth.utils;
 
 import static java.time.ZoneOffset.UTC;
 
