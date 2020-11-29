@@ -1,7 +1,7 @@
 package com.eshilov.auth.token.operations.refresh;
 
+import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.key.KeyService;
-import com.eshilov.auth.token.model.TokenPair;
 import com.eshilov.auth.token.operations.create.CreateTokenPairOperationExecutor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

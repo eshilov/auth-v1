@@ -2,6 +2,7 @@ package com.eshilov.auth.user;
 
 import static java.util.UUID.randomUUID;
 
+import com.eshilov.auth.generated.model.User;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;

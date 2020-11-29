@@ -7,8 +7,8 @@ import static com.eshilov.auth.utils.DateUtils.convertLocalDateTimeToDate;
 import static java.time.LocalDateTime.now;
 
 import com.eshilov.auth.AppProperties;
+import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.key.KeyService;
-import com.eshilov.auth.token.model.TokenPair;
 import com.eshilov.auth.token.model.TokenType;
 import io.jsonwebtoken.Jwts;
 import java.security.Key;

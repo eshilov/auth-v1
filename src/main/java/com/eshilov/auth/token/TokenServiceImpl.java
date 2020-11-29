@@ -1,6 +1,6 @@
 package com.eshilov.auth.token;
 
-import com.eshilov.auth.token.model.TokenPair;
+import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.token.operations.create.CreateTokenPairOperationExecutor;
 import com.eshilov.auth.token.operations.create.CreateTokenPairParams;
 import com.eshilov.auth.token.operations.refresh.RefreshTokenPairOperationExecutor;
