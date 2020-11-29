@@ -3,7 +3,9 @@ package com.eshilov.auth.key;
 import java.security.KeyPair;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class KeyFactoryBean implements FactoryBean<KeyPair> {
 
