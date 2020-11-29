@@ -1,5 +1,6 @@
 package com.eshilov.auth.token.operations.create;
 
+import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
 import static com.eshilov.auth.token.model.TokenType.ACCESS;
 import static com.eshilov.auth.token.model.TokenType.REFRESH;
 import static com.eshilov.utils.DateUtils.convertLocalDateTimeToDate;
@@ -17,8 +18,6 @@ import lombok.Builder;
 
 @Builder
 public class CreateTokenPairOperation {
-
-    private static final String TYPE_CLAIM_NAME = "typ";
 
     private final KeyService keyService;
     private final AppProperties appProperties;
