@@ -1,0 +1,22 @@
+package {{package}};
+
+{{#imports}}
+import {{import}};
+{{/imports}}
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+public interface {{classname}} {
+
+{{#operations}}
+{{#operation}}
+    @RequestMapping(
+            path = "{{path}}",
+            method = RequestMethod.{{httpMethod}})
+    ResponseEntity<{{>returnTypes}}> {{operationId}}({{#allParams}}{{>queryParams}}{{>pathParams}}{{>bodyParams}}{{>headerParams}}{{>formParams}}{{/allParams}});
+{{/operation}}
+{{/operations}}
+}
