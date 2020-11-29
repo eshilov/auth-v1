@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 	id 'com.diffplug.spotless' version '5.8.2'
+	id 'org.openapi.generator' version '5.0.0-beta3'
 }
 
 group = 'com.eshilov'
@@ -22,6 +23,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.2.32'
 	compileOnly 'io.jsonwebtoken:jjwt-api:0.11.2'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
@@ -38,6 +40,40 @@ test {
 
 spotless {
 	java {
+		targetExclude '**/*/generated/**/*.*'
 		googleJavaFormat('1.9').aosp()
 	}
 }
+
+def openApiDir = "$projectDir/src/main/resources/openapi"
+def openApiRootPackage = "com.eshilov.auth.generated"
+openApiGenerate {
+	generatorName = "spring"
+	inputSpec = "$openApiDir/openapi.yml"
+	templateDir = "$openApiDir/templates"
+	apiPackage = "${openApiRootPackage}.api"
+	modelPackage = "${openApiRootPackage}.model"
+	outputDir = "$projectDir/src/main/java"
+	generateModelTests = false
+	generateModelDocumentation = false
+	generateApiTests = false
+	generateApiDocumentation = false
+	configOptions = [
+			sourceFolder: "",
+			useBeanValidation: "false",
+			performBeanValidation: "false",
+			interfaceOnly: "true"
+	]
+	globalProperties = [
+			apis: "",
+			models: ""
+	]
+}
+
+clean {
+	doFirst {
+		delete "$projectDir/src/main/java/com/eshilov/auth/generated"
+	}
+}
+
+compileJava.dependsOn(tasks.openApiGenerate)
