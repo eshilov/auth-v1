@@ -13,4 +13,6 @@ public class AppProperties {
 
     private String privateKeyPath;
     private String publicKeyPath;
+    private Long accessTokenValiditySecs;
+    private Long refreshTokenValiditySecs;
 }

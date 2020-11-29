@@ -1,3 +1,5 @@
 app:
   private-key-path: "classpath:dev_private_key.der"
   public-key-path: "classpath:dev_public_key.der"
+  access-token-validity-secs: 600
+  refresh-token-validity-secs: 86400
