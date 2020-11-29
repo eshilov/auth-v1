@@ -4,6 +4,14 @@ plugins {
 	id 'java'
 	id 'com.diffplug.spotless' version '5.8.2'
 	id 'org.openapi.generator' version '5.0.0-beta3'
+	id 'idea'
+}
+
+sourceSets {
+	intTest {
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
 }
 
 group = 'com.eshilov'
@@ -14,10 +22,19 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+
+	intTestImplementation.extendsFrom implementation
+	intTestImplementation.extendsFrom testImplementation
 }
 
 repositories {
 	mavenCentral()
+}
+
+idea {
+	module {
+		testSourceDirs += sourceSets.intTest.java.srcDirs
+	}
 }
 
 dependencies {
