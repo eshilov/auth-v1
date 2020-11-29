@@ -7,5 +7,5 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CreateTokenPairParams {
 
-    private String subject;
+    private final String subject;
 }
