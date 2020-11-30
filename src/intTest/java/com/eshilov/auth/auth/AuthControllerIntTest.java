@@ -12,6 +12,7 @@ import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 public class AuthControllerIntTest extends BaseIntTest {
@@ -39,7 +40,10 @@ public class AuthControllerIntTest extends BaseIntTest {
         request.setUsername(username);
 
         // When
-        signUp(request, status().isBadRequest());
+        var result = postForMvcResult(signUpPath, request);
+
+        // Then
+        assertMvcResultMatch(result, status().isBadRequest());
     }
 
     @Test
@@ -50,7 +54,10 @@ public class AuthControllerIntTest extends BaseIntTest {
         request.setUsername(badUsername);
 
         // When
-        signUp(request, status().isBadRequest());
+        var result = postForMvcResult(signUpPath, request);
+
+        // Then
+        assertMvcResultMatch(result, status().isBadRequest());
     }
 
     @Test
@@ -58,30 +65,40 @@ public class AuthControllerIntTest extends BaseIntTest {
         // Given
         var request = signUpRequest();
         var badPassword = "";
-        request.setUsername(badPassword);
+        request.setPassword(badPassword);
 
         // When
-        signUp(request, status().isBadRequest());
-    }
+        var result = postForMvcResult(signUpPath, request);
 
-    private SignUpResponse signUp(SignUpRequest request) {
-        return signUp(request, status().isOk());
+        // Then
+        assertMvcResultMatch(result, status().isBadRequest());
     }
 
     @SneakyThrows
-    private SignUpResponse signUp(SignUpRequest request, ResultMatcher statusCodeMatcher) {
+    private SignUpResponse signUp(SignUpRequest request) {
+        return postForResponseObject(signUpPath, request, SignUpResponse.class, status().isOk());
+    }
+
+    @SneakyThrows
+    private <T> T postForResponseObject(
+            String path, Object request, Class<T> responseType, ResultMatcher statusCodeMatcher) {
         var responseBytes =
-                mockMvc()
-                        .perform(
-                                post(signUpPath)
-                                        .contentType(APPLICATION_JSON)
-                                        .content(objectMapper().writeValueAsBytes(request)))
+                postForMvcResult(path, request)
                         .andExpect(statusCodeMatcher)
                         .andReturn()
                         .getResponse()
                         .getContentAsByteArray();
 
-        return objectMapper().readValue(responseBytes, SignUpResponse.class);
+        return objectMapper().readValue(responseBytes, responseType);
+    }
+
+    @SneakyThrows
+    private ResultActions postForMvcResult(String path, Object request) {
+        return mockMvc()
+                .perform(
+                        post(path)
+                                .contentType(APPLICATION_JSON)
+                                .content(objectMapper().writeValueAsBytes(request)));
     }
 
     private void assertSignUpResponse(SignUpResponse response, SignUpRequest request) {
@@ -95,5 +112,10 @@ public class AuthControllerIntTest extends BaseIntTest {
                     softly.assertThat(tokens.getAccess()).isNotBlank();
                     softly.assertThat(tokens.getRefresh()).isNotBlank();
                 });
+    }
+
+    @SneakyThrows
+    private void assertMvcResultMatch(ResultActions result, ResultMatcher statusCodeMatcher) {
+        result.andExpect(statusCodeMatcher);
     }
 }
