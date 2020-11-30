@@ -12,6 +12,7 @@ import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 public class AuthControllerIntTest extends BaseIntTest {
 
@@ -27,15 +28,55 @@ public class AuthControllerIntTest extends BaseIntTest {
         assertSignUpResponse(response, request);
     }
 
-    @SneakyThrows
+    @Test
+    public void signUpUsernameTaken() {
+        // Given
+        var initialRequest = signUpRequest();
+        signUp(initialRequest);
+
+        var username = initialRequest.getUsername();
+        var request = signUpRequest();
+        request.setUsername(username);
+
+        // When
+        signUp(request, status().isBadRequest());
+    }
+
+    @Test
+    public void signUpBadUsername() {
+        // Given
+        var request = signUpRequest();
+        var badUsername = "";
+        request.setUsername(badUsername);
+
+        // When
+        signUp(request, status().isBadRequest());
+    }
+
+    @Test
+    public void signUpBadPassword() {
+        // Given
+        var request = signUpRequest();
+        var badPassword = "";
+        request.setUsername(badPassword);
+
+        // When
+        signUp(request, status().isBadRequest());
+    }
+
     private SignUpResponse signUp(SignUpRequest request) {
+        return signUp(request, status().isOk());
+    }
+
+    @SneakyThrows
+    private SignUpResponse signUp(SignUpRequest request, ResultMatcher statusCodeMatcher) {
         var responseBytes =
                 mockMvc()
                         .perform(
                                 post(signUpPath)
                                         .contentType(APPLICATION_JSON)
                                         .content(objectMapper().writeValueAsBytes(request)))
-                        .andExpect(status().isOk())
+                        .andExpect(statusCodeMatcher)
                         .andReturn()
                         .getResponse()
                         .getContentAsByteArray();
