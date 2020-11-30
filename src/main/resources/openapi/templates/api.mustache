@@ -13,8 +13,11 @@ public interface {{classname}} {
 
 {{#operations}}
 {{#operation}}
+
+    String {{operationId}}Path = "{{basePathWithoutHost}}{{path}}";
+
     @RequestMapping(
-            path = "{{path}}",
+            path = {{operationId}}Path,
             method = RequestMethod.{{httpMethod}})
     ResponseEntity<{{>returnTypes}}> {{operationId}}({{#allParams}}{{>queryParams}}{{>pathParams}}{{>bodyParams}}{{>headerParams}}{{>formParams}}{{/allParams}});
 {{/operation}}
