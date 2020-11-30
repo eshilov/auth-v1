@@ -1,4 +1,4 @@
-package com.eshilov.auth.auth;
+package com.eshilov.auth.auth.validation.password;
 
 import static org.apache.commons.lang3.StringUtils.isAlphanumeric;
 
@@ -6,7 +6,7 @@ import java.util.function.IntPredicate;
 import lombok.Builder;
 
 @Builder
-public class PasswordValidator {
+public class SignUpRequestPasswordValidator {
 
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 32;
