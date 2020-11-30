@@ -4,8 +4,9 @@
 @NoArgsConstructor
 @AllArgsConstructor
 public class {{classname}} {
-
 {{#vars}}
+
+    {{>beanValidation}}
     private {{datatypeWithEnum}} {{name}};
 {{/vars}}
 }
