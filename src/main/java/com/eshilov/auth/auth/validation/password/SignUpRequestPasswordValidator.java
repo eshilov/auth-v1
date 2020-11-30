@@ -1,5 +1,6 @@
 package com.eshilov.auth.auth.validation.password;
 
+import static com.eshilov.auth.utils.ExceptionUtils.throwValidationException;
 import static org.apache.commons.lang3.StringUtils.isAlphanumeric;
 
 import java.util.function.IntPredicate;
@@ -23,27 +24,27 @@ public class SignUpRequestPasswordValidator {
 
     private void validateNotNull() {
         if (password == null) {
-            throwValidationError("Password must not be null");
+            throwValidationException("Password must not be null");
         }
     }
 
     private void validateMinLength() {
         if (password.length() < MIN_LENGTH) {
-            throwValidationError(
+            throwValidationException(
                     String.format("Password length must not be less than %d", MIN_LENGTH));
         }
     }
 
     private void validateMaxLength() {
         if (password.length() > MAX_LENGTH) {
-            throwValidationError(
+            throwValidationException(
                     String.format("Password length must not be greater than %d", MAX_LENGTH));
         }
     }
 
     private void validateOnlyValidSymbolsPresent() {
         if (!isAlphanumeric(password)) {
-            throwValidationError("Password must be an alphanumeric string");
+            throwValidationException("Password must be an alphanumeric string");
         }
     }
 
@@ -55,11 +56,7 @@ public class SignUpRequestPasswordValidator {
     private void validateAnySymbolMatch(IntPredicate predicate, String errorMessage) {
         var noneLetterPresent = password.chars().noneMatch(predicate);
         if (noneLetterPresent) {
-            throwValidationError(errorMessage);
+            throwValidationException(errorMessage);
         }
-    }
-
-    private void throwValidationError(String message) {
-        throw new IllegalArgumentException(message);
     }
 }
