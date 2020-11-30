@@ -5,6 +5,7 @@ import static org.springframework.http.HttpStatus.OK;
 import com.eshilov.auth.generated.api.AuthApi;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class AuthController implements AuthApi {
     private final AuthService authService;
 
     @Override
-    public ResponseEntity<SignUpResponse> signUp(SignUpRequest signUpRequest) {
+    public ResponseEntity<SignUpResponse> signUp(@Valid SignUpRequest signUpRequest) {
         var response = authService.signUp(signUpRequest);
         return ResponseEntity.status(OK).body(response);
     }
