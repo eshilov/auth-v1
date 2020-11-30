@@ -1,10 +1,9 @@
 package com.eshilov.auth.auth;
 
-import lombok.Builder;
+import static org.apache.commons.lang3.StringUtils.isAlphanumeric;
 
 import java.util.function.IntPredicate;
-
-import static org.apache.commons.lang3.StringUtils.isAlphanumeric;
+import lombok.Builder;
 
 @Builder
 public class PasswordValidator {
@@ -30,13 +29,15 @@ public class PasswordValidator {
 
     private void validateMinLength() {
         if (password.length() < MIN_LENGTH) {
-            throwValidationError(String.format("Password length must not be less than %d", MIN_LENGTH));
+            throwValidationError(
+                    String.format("Password length must not be less than %d", MIN_LENGTH));
         }
     }
 
     private void validateMaxLength() {
         if (password.length() > MAX_LENGTH) {
-            throwValidationError(String.format("Password length must not be greater than %d", MAX_LENGTH));
+            throwValidationError(
+                    String.format("Password length must not be greater than %d", MAX_LENGTH));
         }
     }
 
