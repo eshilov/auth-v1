@@ -27,6 +27,10 @@ paths:
 
 components:
   schemas:
+    DefaultString:
+      type: string
+      minLength: 1
+      maxLength: 255
     User:
       type: object
       properties:
@@ -51,8 +55,9 @@ components:
       properties:
         username:
           type: string
+          format: email
         password:
-          type: string
+          $ref: '#/components/schemas/DefaultString'
     SignUpResponse:
       type: object
       properties:
