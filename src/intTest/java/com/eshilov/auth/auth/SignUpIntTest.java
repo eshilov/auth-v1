@@ -7,11 +7,11 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
-import com.eshilov.auth.operations.ApiOperations;
-import com.eshilov.auth.operations.AuthOperations;
 import com.eshilov.auth.IntTest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
+import com.eshilov.auth.operations.ApiOperations;
+import com.eshilov.auth.operations.AuthOperations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
