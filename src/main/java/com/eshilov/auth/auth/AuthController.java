@@ -3,8 +3,10 @@ package com.eshilov.auth.auth;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.eshilov.auth.generated.api.AuthApi;
+import com.eshilov.auth.generated.model.LogInRequest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
+import com.eshilov.auth.generated.model.TokenPair;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,12 @@ public class AuthController implements AuthApi {
     @Override
     public ResponseEntity<SignUpResponse> signUp(@Valid SignUpRequest signUpRequest) {
         var response = authService.signUp(signUpRequest);
+        return ResponseEntity.status(OK).body(response);
+    }
+
+    @Override
+    public ResponseEntity<TokenPair> logIn(@Valid LogInRequest logInRequest) {
+        var response = authService.logIn(logInRequest);
         return ResponseEntity.status(OK).body(response);
     }
 }
