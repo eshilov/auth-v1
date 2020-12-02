@@ -2,6 +2,7 @@ package com.eshilov.auth;
 
 import static org.apache.commons.lang3.RandomStringUtils.*;
 
+import com.eshilov.auth.generated.model.LogInRequest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.github.javafaker.Faker;
 import lombok.experimental.UtilityClass;
@@ -15,6 +16,13 @@ public class TestDataUtils {
 
     public static SignUpRequest signUpRequest() {
         return SignUpRequest.builder().username(username()).password(password()).build();
+    }
+
+    public static LogInRequest logInRequest(SignUpRequest signUpRequest) {
+        return LogInRequest.builder()
+                .username(signUpRequest.getUsername())
+                .password(signUpRequest.getPassword())
+                .build();
     }
 
     public static String username() {
