@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 @Accessors(fluent = true)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class BaseIntTest {
+public class IntTest {
 
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
