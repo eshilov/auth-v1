@@ -24,10 +24,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SignUpResponse'
+  /auth/login:
+    post:
+      operationId: logIn
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogInRequest'
+      responses:
+        '200':
+          description: Ok
+          content:
+            applicaiton/json:
+              schema:
+                $ref: '#/components/schemas/TokenPair'
 
 components:
   schemas:
-    DefaultString:
+    DefaultNonEmptyString:
       type: string
       minLength: 1
       maxLength: 255
@@ -57,7 +73,7 @@ components:
           type: string
           format: email
         password:
-          $ref: '#/components/schemas/DefaultString'
+          $ref: '#/components/schemas/DefaultNonEmptyString'
     SignUpResponse:
       type: object
       properties:
@@ -65,3 +81,11 @@ components:
           $ref: '#/components/schemas/User'
         tokens:
           $ref: '#/components/schemas/TokenPair'
+    LogInRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          format: email
+        password:
+          $ref: '#/components/schemas/DefaultNonEmptyString'
