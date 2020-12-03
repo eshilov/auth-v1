@@ -40,15 +40,15 @@ paths:
             applicaiton/json:
               schema:
                 $ref: '#/components/schemas/TokenPair'
-  /auth/refresh:
+  /token/refresh:
     post:
-      operationId: refresh
+      operationId: refreshToken
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefreshRequest'
+              $ref: '#/components/schemas/RefreshTokenRequest'
       responses:
         '200':
           description: Ok
@@ -105,7 +105,7 @@ components:
           format: email
         password:
           $ref: '#/components/schemas/DefaultNonEmptyString'
-    RefreshRequest:
+    RefreshTokenRequest:
       type: object
       properties:
         token:

@@ -26,9 +26,4 @@ public class AuthController implements AuthApi {
         var response = authService.logIn(logInRequest);
         return ResponseEntity.status(OK).body(response);
     }
-
-    @Override
-    public ResponseEntity<TokenPair> refresh(@Valid RefreshRequest refreshRequest) {
-        return null;
-    }
 }

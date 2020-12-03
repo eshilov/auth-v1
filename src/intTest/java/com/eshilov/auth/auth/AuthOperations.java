@@ -1,5 +1,6 @@
-package com.eshilov.auth.operations;
+package com.eshilov.auth.auth;
 
+import com.eshilov.auth.common.ApiOperations;
 import com.eshilov.auth.generated.api.AuthApi;
 import com.eshilov.auth.generated.model.*;
 import javax.validation.Valid;
@@ -16,11 +17,6 @@ public class AuthOperations implements AuthApi {
     @Override
     public ResponseEntity<TokenPair> logIn(@Valid LogInRequest logInRequest) {
         return apiOperations.postForResponseEntity(logInPath, logInRequest, TokenPair.class);
-    }
-
-    @Override
-    public ResponseEntity<TokenPair> refresh(@Valid RefreshRequest refreshRequest) {
-        return apiOperations.postForResponseEntity(refreshPath, refreshRequest, TokenPair.class);
     }
 
     @Override

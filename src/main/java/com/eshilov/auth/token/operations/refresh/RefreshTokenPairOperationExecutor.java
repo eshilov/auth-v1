@@ -1,5 +1,6 @@
 package com.eshilov.auth.token.operations.refresh;
 
+import com.eshilov.auth.generated.model.RefreshTokenRequest;
 import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.key.KeyService;
 import com.eshilov.auth.token.operations.create.CreateTokenPairOperationExecutor;
@@ -13,7 +14,7 @@ public class RefreshTokenPairOperationExecutor {
     private final KeyService keyService;
     private final CreateTokenPairOperationExecutor createTokenPairOperationExecutor;
 
-    public TokenPair execute(RefreshTokenPairParams params) {
+    public TokenPair execute(RefreshTokenRequest params) {
         return RefreshTokenPairOperation.builder()
                 .keyService(keyService)
                 .createTokenPairOperationExecutor(createTokenPairOperationExecutor)
