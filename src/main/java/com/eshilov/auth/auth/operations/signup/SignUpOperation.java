@@ -6,7 +6,7 @@ import com.eshilov.auth.generated.model.SignUpResponse;
 import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.generated.model.User;
 import com.eshilov.auth.token.TokenService;
-import com.eshilov.auth.token.operations.create.CreateTokenPairParams;
+import com.eshilov.auth.token.operations.create.CreateTokensRequest;
 import com.eshilov.auth.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +23,6 @@ public class SignUpOperation {
 
     public SignUpResponse execute(SignUpRequest request) {
         requestValidatorExecutor.validate(request);
-
         var username = request.getUsername();
         var encodedPassword = passwordEncoder.encode(request.getPassword());
         var userToCreate = User.builder().username(username).password(encodedPassword).build();
@@ -34,7 +33,7 @@ public class SignUpOperation {
 
     private TokenPair createTokenPairForUser(User user) {
         var createTokenPairParams =
-                CreateTokenPairParams.builder().subject(user.getUsername()).build();
-        return tokenService.createTokenPair(createTokenPairParams);
+                CreateTokensRequest.builder().subject(user.getUsername()).build();
+        return tokenService.createTokens(createTokenPairParams);
     }
 }

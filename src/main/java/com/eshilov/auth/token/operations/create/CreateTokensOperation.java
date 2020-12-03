@@ -14,41 +14,40 @@ import io.jsonwebtoken.Jwts;
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Supplier;
-import lombok.Builder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
-@Builder
-public class CreateTokenPairOperation {
+@Component
+@RequiredArgsConstructor
+public class CreateTokensOperation {
 
     private final KeyService keyService;
     private final AppProperties appProperties;
 
-    private final CreateTokenPairParams params;
-
-    public TokenPair execute() {
+    public TokenPair execute(CreateTokensRequest request) {
+        String subject = request.getSubject();
         return TokenPair.builder()
-                .access(createAccessToken())
-                .refresh(createRefreshToken())
+                .access(createAccessToken(subject))
+                .refresh(createRefreshToken(subject))
                 .build();
     }
 
-    private String createAccessToken() {
-        return createToken(ACCESS, appProperties::getAccessTokenValiditySecs);
+    private String createAccessToken(String subject) {
+        return createToken(subject, ACCESS, appProperties::getAccessTokenValiditySecs);
     }
 
-    private String createRefreshToken() {
-        return createToken(REFRESH, appProperties::getRefreshTokenValiditySecs);
+    private String createRefreshToken(String subject) {
+        return createToken(subject, REFRESH, appProperties::getRefreshTokenValiditySecs);
     }
 
-    private Key getKey() {
-        return keyService.getPrivateKey();
-    }
+    private String createToken(
+            String subject, TokenType type, Supplier<Long> validitySecsSupplier) {
 
-    private String createToken(TokenType type, Supplier<Long> validitySecsSupplier) {
         return Jwts.builder()
                 .claim(TYPE_CLAIM_NAME, type.name())
-                .setSubject(params.getSubject())
+                .setSubject(subject)
                 .setExpiration(getTokenExpiration(validitySecsSupplier))
-                .signWith(getKey())
+                .signWith(getSigningKey())
                 .compact();
     }
 
@@ -56,5 +55,9 @@ public class CreateTokenPairOperation {
         var validitySecs = validitySecsSupplier.get();
         var expiration = now().plusSeconds(validitySecs);
         return convertLocalDateTimeToDate(expiration);
+    }
+
+    private Key getSigningKey() {
+        return keyService.getPrivateKey();
     }
 }

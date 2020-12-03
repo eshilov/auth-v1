@@ -1,10 +1,10 @@
 package com.eshilov.auth.token;
 
-import com.eshilov.auth.generated.model.RefreshTokenRequest;
+import com.eshilov.auth.generated.model.RefreshTokensRequest;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.token.operations.create.CreateTokenPairOperationExecutor;
-import com.eshilov.auth.token.operations.create.CreateTokenPairParams;
-import com.eshilov.auth.token.operations.refresh.RefreshTokenPairOperationExecutor;
+import com.eshilov.auth.token.operations.create.CreateTokensOperation;
+import com.eshilov.auth.token.operations.create.CreateTokensRequest;
+import com.eshilov.auth.token.operations.refresh.RefreshTokensOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,16 +12,16 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService {
 
-    private final CreateTokenPairOperationExecutor createTokenPairOperationExecutor;
-    private final RefreshTokenPairOperationExecutor refreshTokenPairOperationExecutor;
+    private final CreateTokensOperation createTokensOperation;
+    private final RefreshTokensOperation refreshTokensOperation;
 
     @Override
-    public TokenPair createTokenPair(CreateTokenPairParams params) {
-        return createTokenPairOperationExecutor.execute(params);
+    public TokenPair createTokens(CreateTokensRequest request) {
+        return createTokensOperation.execute(request);
     }
 
     @Override
-    public TokenPair refreshTokenPair(RefreshTokenRequest params) {
-        return refreshTokenPairOperationExecutor.execute(params);
+    public TokenPair refreshTokens(RefreshTokensRequest request) {
+        return refreshTokensOperation.execute(request);
     }
 }

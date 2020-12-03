@@ -1,12 +1,12 @@
 package com.eshilov.auth.token;
 
-import com.eshilov.auth.generated.model.RefreshTokenRequest;
+import com.eshilov.auth.generated.model.RefreshTokensRequest;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.token.operations.create.CreateTokenPairParams;
+import com.eshilov.auth.token.operations.create.CreateTokensRequest;
 
 public interface TokenService {
 
-    TokenPair createTokenPair(CreateTokenPairParams params);
+    TokenPair createTokens(CreateTokensRequest request);
 
-    TokenPair refreshTokenPair(RefreshTokenRequest params);
+    TokenPair refreshTokens(RefreshTokensRequest request);
 }

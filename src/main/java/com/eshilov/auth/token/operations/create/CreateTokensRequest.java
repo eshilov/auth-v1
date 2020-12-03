@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class CreateTokenPairParams {
+public class CreateTokensRequest {
 
     private final String subject;
 }
