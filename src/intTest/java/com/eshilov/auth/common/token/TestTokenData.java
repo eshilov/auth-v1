@@ -1,4 +1,4 @@
-package com.eshilov.auth;
+package com.eshilov.auth.common.token;
 
 import com.eshilov.auth.token.model.TokenType;
 import java.util.Date;

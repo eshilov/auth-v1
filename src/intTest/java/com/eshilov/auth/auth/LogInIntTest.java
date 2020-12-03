@@ -1,13 +1,13 @@
 package com.eshilov.auth.auth;
 
-import static com.eshilov.auth.TestDataUtils.*;
+import static com.eshilov.auth.common.TestDataUtils.*;
 import static com.eshilov.auth.generated.api.AuthApi.logInPath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-import com.eshilov.auth.IntTest;
-import com.eshilov.auth.operations.ApiOperations;
-import com.eshilov.auth.operations.AuthOperations;
+import com.eshilov.auth.common.ApiOperations;
+import com.eshilov.auth.common.IntTest;
+import com.eshilov.auth.common.token.TokenPairResponseEntityAssertion;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

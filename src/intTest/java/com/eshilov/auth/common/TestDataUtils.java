@@ -1,9 +1,10 @@
-package com.eshilov.auth;
+package com.eshilov.auth.common;
 
-import static org.apache.commons.lang3.RandomStringUtils.*;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomStringUtils.randomNumeric;
 
 import com.eshilov.auth.generated.model.LogInRequest;
-import com.eshilov.auth.generated.model.RefreshRequest;
+import com.eshilov.auth.generated.model.RefreshTokenRequest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.github.javafaker.Faker;
 import lombok.experimental.UtilityClass;
@@ -26,8 +27,8 @@ public class TestDataUtils {
                 .build();
     }
 
-    public static RefreshRequest refreshRequest(String refreshToken) {
-        return RefreshRequest.builder().token(refreshToken).build();
+    public static RefreshTokenRequest refreshRequest(String refreshToken) {
+        return RefreshTokenRequest.builder().token(refreshToken).build();
     }
 
     public static String username() {

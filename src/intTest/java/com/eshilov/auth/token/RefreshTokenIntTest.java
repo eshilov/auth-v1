@@ -1,21 +1,26 @@
-package com.eshilov.auth.auth;
+package com.eshilov.auth.token;
 
-import static com.eshilov.auth.TestDataUtils.*;
-import static com.eshilov.auth.generated.api.AuthApi.refreshPath;
+import static com.eshilov.auth.common.TestDataUtils.logInRequest;
+import static com.eshilov.auth.common.TestDataUtils.refreshRequest;
+import static com.eshilov.auth.common.TestDataUtils.signUpRequest;
+import static com.eshilov.auth.generated.api.TokenApi.refreshTokenPath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-import com.eshilov.auth.IntTest;
-import com.eshilov.auth.TestTokenHelper;
-import com.eshilov.auth.operations.ApiOperations;
-import com.eshilov.auth.operations.AuthOperations;
+import com.eshilov.auth.auth.AuthOperations;
+import com.eshilov.auth.common.ApiOperations;
+import com.eshilov.auth.common.IntTest;
+import com.eshilov.auth.common.token.TestTokenHelper;
+import com.eshilov.auth.common.token.TokenPairResponseEntityAssertion;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @SuppressWarnings("ConstantConditions")
-public class RefreshIntTest extends IntTest {
+public class RefreshTokenIntTest extends IntTest {
 
     @Autowired private AuthOperations authOperations;
+
+    @Autowired private TokenOperations tokenOperations;
 
     @Autowired private ApiOperations apiOperations;
 
@@ -36,7 +41,7 @@ public class RefreshIntTest extends IntTest {
         var refreshRequest = refreshRequest(refreshToken);
 
         // When
-        var refreshResponseEntity = authOperations.refresh(refreshRequest);
+        var refreshResponseEntity = tokenOperations.refreshToken(refreshRequest);
 
         // Then
         tokenPairResponseEntityAssertion.execute(refreshResponseEntity, logInRequest.getUsername());
@@ -57,7 +62,7 @@ public class RefreshIntTest extends IntTest {
 
         // When
         var response =
-                apiOperations.postForServletResponse(refreshPath, expiredTokenRefreshRequest);
+                apiOperations.postForServletResponse(refreshTokenPath, expiredTokenRefreshRequest);
 
         // Then
         assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.value());
@@ -69,7 +74,7 @@ public class RefreshIntTest extends IntTest {
         var badTokenRequest = refreshRequest("bad token");
 
         // When
-        var response = apiOperations.postForServletResponse(refreshPath, badTokenRequest);
+        var response = apiOperations.postForServletResponse(refreshTokenPath, badTokenRequest);
 
         // Then
         assertThat(response.getStatus()).isEqualTo(BAD_REQUEST.value());
