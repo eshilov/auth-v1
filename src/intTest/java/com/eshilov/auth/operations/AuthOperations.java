@@ -1,10 +1,7 @@
 package com.eshilov.auth.operations;
 
 import com.eshilov.auth.generated.api.AuthApi;
-import com.eshilov.auth.generated.model.LogInRequest;
-import com.eshilov.auth.generated.model.SignUpRequest;
-import com.eshilov.auth.generated.model.SignUpResponse;
-import com.eshilov.auth.generated.model.TokenPair;
+import com.eshilov.auth.generated.model.*;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +16,11 @@ public class AuthOperations implements AuthApi {
     @Override
     public ResponseEntity<TokenPair> logIn(@Valid LogInRequest logInRequest) {
         return apiOperations.postForResponseEntity(logInPath, logInRequest, TokenPair.class);
+    }
+
+    @Override
+    public ResponseEntity<TokenPair> refresh(@Valid RefreshRequest refreshRequest) {
+        return null;
     }
 
     @Override
