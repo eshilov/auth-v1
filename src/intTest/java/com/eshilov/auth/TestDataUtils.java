@@ -3,6 +3,7 @@ package com.eshilov.auth;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 
 import com.eshilov.auth.generated.model.LogInRequest;
+import com.eshilov.auth.generated.model.RefreshRequest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.github.javafaker.Faker;
 import lombok.experimental.UtilityClass;
@@ -23,6 +24,10 @@ public class TestDataUtils {
                 .username(signUpRequest.getUsername())
                 .password(signUpRequest.getPassword())
                 .build();
+    }
+
+    public static RefreshRequest refreshRequest(String refreshToken) {
+        return RefreshRequest.builder().token(refreshToken).build();
     }
 
     public static String username() {

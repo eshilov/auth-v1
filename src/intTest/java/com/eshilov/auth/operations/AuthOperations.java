@@ -20,7 +20,7 @@ public class AuthOperations implements AuthApi {
 
     @Override
     public ResponseEntity<TokenPair> refresh(@Valid RefreshRequest refreshRequest) {
-        return null;
+        return apiOperations.postForResponseEntity(refreshPath, refreshRequest, TokenPair.class);
     }
 
     @Override
