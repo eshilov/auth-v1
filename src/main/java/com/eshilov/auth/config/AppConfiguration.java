@@ -1,4 +1,4 @@
-package com.eshilov.auth;
+package com.eshilov.auth.config;
 
 import java.security.KeyFactory;
 import lombok.SneakyThrows;

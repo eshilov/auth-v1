@@ -1,4 +1,4 @@
-package com.eshilov.auth.token.model;
+package com.eshilov.auth.tokens.model;
 
 import lombok.experimental.UtilityClass;
 

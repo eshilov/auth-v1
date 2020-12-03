@@ -1,15 +1,15 @@
-package com.eshilov.auth.token.operations.create;
+package com.eshilov.auth.tokens.operations.create;
 
-import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
-import static com.eshilov.auth.token.model.TokenType.ACCESS;
-import static com.eshilov.auth.token.model.TokenType.REFRESH;
+import static com.eshilov.auth.tokens.model.TokenConstants.TYPE_CLAIM_NAME;
+import static com.eshilov.auth.tokens.model.TokenType.ACCESS;
+import static com.eshilov.auth.tokens.model.TokenType.REFRESH;
 import static com.eshilov.auth.utils.DateUtils.convertLocalDateTimeToDate;
 import static java.time.LocalDateTime.now;
 
-import com.eshilov.auth.AppProperties;
+import com.eshilov.auth.config.AppProperties;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.key.KeyService;
-import com.eshilov.auth.token.model.TokenType;
+import com.eshilov.auth.keys.KeyService;
+import com.eshilov.auth.tokens.model.TokenType;
 import io.jsonwebtoken.Jwts;
 import java.security.Key;
 import java.util.Date;

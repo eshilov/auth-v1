@@ -1,6 +1,6 @@
 package com.eshilov.auth.testhelp.tokens;
 
-import com.eshilov.auth.token.model.TokenType;
+import com.eshilov.auth.tokens.model.TokenType;
 import java.util.Date;
 import lombok.Builder;
 import lombok.Getter;

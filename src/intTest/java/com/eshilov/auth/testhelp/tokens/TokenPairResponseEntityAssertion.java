@@ -1,14 +1,14 @@
 package com.eshilov.auth.testhelp.tokens;
 
-import static com.eshilov.auth.token.model.TokenType.ACCESS;
-import static com.eshilov.auth.token.model.TokenType.REFRESH;
+import static com.eshilov.auth.tokens.model.TokenType.ACCESS;
+import static com.eshilov.auth.tokens.model.TokenType.REFRESH;
 import static com.eshilov.auth.utils.DateUtils.convertLocalDateTimeToDate;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.springframework.http.HttpStatus.OK;
 
-import com.eshilov.auth.AppProperties;
+import com.eshilov.auth.config.AppProperties;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.token.model.TokenType;
+import com.eshilov.auth.tokens.model.TokenType;
 import java.time.LocalDateTime;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;

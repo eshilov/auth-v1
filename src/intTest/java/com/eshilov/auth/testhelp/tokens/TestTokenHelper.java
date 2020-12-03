@@ -1,8 +1,8 @@
 package com.eshilov.auth.testhelp.tokens;
 
-import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
+import static com.eshilov.auth.tokens.model.TokenConstants.TYPE_CLAIM_NAME;
 
-import com.eshilov.auth.token.model.TokenType;
+import com.eshilov.auth.tokens.model.TokenType;
 import io.jsonwebtoken.Jwts;
 import java.security.KeyPair;
 import java.util.Date;

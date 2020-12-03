@@ -1,4 +1,4 @@
-package com.eshilov.auth.user;
+package com.eshilov.auth.users;
 
 import static java.util.UUID.randomUUID;
 

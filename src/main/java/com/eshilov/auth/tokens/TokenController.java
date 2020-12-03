@@ -1,24 +1,25 @@
-package com.eshilov.auth.token;
+package com.eshilov.auth.tokens;
+
+import static org.springframework.http.HttpStatus.OK;
 
 import com.eshilov.auth.generated.api.TokensApi;
 import com.eshilov.auth.generated.model.RefreshTokensRequest;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.testhelp.ApiOperations;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
+@RestController
 @RequiredArgsConstructor
-public class TestTokensApi implements TokensApi {
+public class TokenController implements TokensApi {
 
-    private final ApiOperations apiOperations;
+    private final TokenService tokenService;
 
     @Override
     public ResponseEntity<TokenPair> refreshTokens(
             @Valid RefreshTokensRequest refreshTokensRequest) {
-        return apiOperations.postForResponseEntity(
-                refreshTokensPath, refreshTokensRequest, TokenPair.class);
+        var response = tokenService.refreshTokens(refreshTokensRequest);
+        return ResponseEntity.status(OK).body(response);
     }
 }

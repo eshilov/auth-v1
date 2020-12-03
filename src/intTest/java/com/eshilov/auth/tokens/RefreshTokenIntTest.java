@@ -1,4 +1,4 @@
-package com.eshilov.auth.token;
+package com.eshilov.auth.tokens;
 
 import static com.eshilov.auth.generated.api.TokensApi.refreshTokensPath;
 import static com.eshilov.auth.testhelp.TestDataUtils.logInRequest;

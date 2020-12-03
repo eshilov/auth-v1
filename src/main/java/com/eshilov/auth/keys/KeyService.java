@@ -1,4 +1,4 @@
-package com.eshilov.auth.key;
+package com.eshilov.auth.keys;
 
 import java.security.Key;
 

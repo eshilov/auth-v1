@@ -2,7 +2,7 @@ package com.eshilov.auth.auth.operations.signup.validation;
 
 import static com.eshilov.auth.utils.ExceptionUtils.throwValidationException;
 
-import com.eshilov.auth.user.UserService;
+import com.eshilov.auth.users.UserService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.validator.routines.EmailValidator;

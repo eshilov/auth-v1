@@ -1,4 +1,4 @@
-package com.eshilov.auth.token.operations.create;
+package com.eshilov.auth.tokens.operations.create;
 
 import lombok.Builder;
 import lombok.Getter;

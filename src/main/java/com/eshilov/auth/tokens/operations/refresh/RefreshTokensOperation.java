@@ -1,14 +1,14 @@
-package com.eshilov.auth.token.operations.refresh;
+package com.eshilov.auth.tokens.operations.refresh;
 
-import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
-import static com.eshilov.auth.token.model.TokenType.REFRESH;
+import static com.eshilov.auth.tokens.model.TokenConstants.TYPE_CLAIM_NAME;
+import static com.eshilov.auth.tokens.model.TokenType.REFRESH;
 import static com.eshilov.auth.utils.ExceptionUtils.validationExceptionSupplier;
 
 import com.eshilov.auth.generated.model.RefreshTokensRequest;
 import com.eshilov.auth.generated.model.TokenPair;
-import com.eshilov.auth.key.KeyService;
-import com.eshilov.auth.token.operations.create.CreateTokensOperation;
-import com.eshilov.auth.token.operations.create.CreateTokensRequest;
+import com.eshilov.auth.keys.KeyService;
+import com.eshilov.auth.tokens.operations.create.CreateTokensOperation;
+import com.eshilov.auth.tokens.operations.create.CreateTokensRequest;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;

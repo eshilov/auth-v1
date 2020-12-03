@@ -1,4 +1,4 @@
-package com.eshilov.auth;
+package com.eshilov.auth.config;
 
 import lombok.Getter;
 import lombok.Setter;

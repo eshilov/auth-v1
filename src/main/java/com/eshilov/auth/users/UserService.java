@@ -1,4 +1,4 @@
-package com.eshilov.auth.user;
+package com.eshilov.auth.users;
 
 import com.eshilov.auth.generated.model.User;
 import java.util.Optional;

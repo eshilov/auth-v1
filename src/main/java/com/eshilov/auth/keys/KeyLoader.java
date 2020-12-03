@@ -1,6 +1,6 @@
-package com.eshilov.auth.key;
+package com.eshilov.auth.keys;
 
-import com.eshilov.auth.AppProperties;
+import com.eshilov.auth.config.AppProperties;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.security.KeyFactory;
