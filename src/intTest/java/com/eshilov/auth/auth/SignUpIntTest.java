@@ -1,17 +1,16 @@
 package com.eshilov.auth.auth;
 
-import static com.eshilov.auth.TestDataUtils.signUpRequest;
+import static com.eshilov.auth.common.TestDataUtils.signUpRequest;
 import static com.eshilov.auth.generated.api.AuthApi.signUpPath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
-import com.eshilov.auth.IntTest;
+import com.eshilov.auth.common.ApiOperations;
+import com.eshilov.auth.common.IntTest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
-import com.eshilov.auth.operations.ApiOperations;
-import com.eshilov.auth.operations.AuthOperations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

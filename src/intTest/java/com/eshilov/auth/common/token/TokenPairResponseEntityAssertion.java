@@ -1,4 +1,4 @@
-package com.eshilov.auth.auth;
+package com.eshilov.auth.common.token;
 
 import static com.eshilov.auth.token.model.TokenType.ACCESS;
 import static com.eshilov.auth.token.model.TokenType.REFRESH;
@@ -7,7 +7,6 @@ import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.eshilov.auth.AppProperties;
-import com.eshilov.auth.TestTokenHelper;
 import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.token.model.TokenType;
 import java.time.LocalDateTime;

@@ -45,7 +45,7 @@ public class CreateTokenPairOperation {
 
     private String createToken(TokenType type, Supplier<Long> validitySecsSupplier) {
         return Jwts.builder()
-                .claim(TYPE_CLAIM_NAME, type)
+                .claim(TYPE_CLAIM_NAME, type.name())
                 .setSubject(params.getSubject())
                 .setExpiration(getTokenExpiration(validitySecsSupplier))
                 .signWith(getKey())

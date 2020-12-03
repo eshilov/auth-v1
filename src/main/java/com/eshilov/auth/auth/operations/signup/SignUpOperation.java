@@ -33,7 +33,8 @@ public class SignUpOperation {
     }
 
     private TokenPair createTokenPairForUser(User user) {
-        var createTokenPairParams = new CreateTokenPairParams(user.getUsername());
+        var createTokenPairParams =
+                CreateTokenPairParams.builder().subject(user.getUsername()).build();
         return tokenService.createTokenPair(createTokenPairParams);
     }
 }
