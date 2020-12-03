@@ -1,4 +1,4 @@
-package com.eshilov.auth.common;
+package com.eshilov.auth.testhelp;
 
 import static lombok.AccessLevel.PROTECTED;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;

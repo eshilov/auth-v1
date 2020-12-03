@@ -1,19 +1,19 @@
 package com.eshilov.auth.auth;
 
-import static com.eshilov.auth.common.TestDataUtils.*;
 import static com.eshilov.auth.generated.api.AuthApi.logInPath;
+import static com.eshilov.auth.testhelp.TestDataUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
-import com.eshilov.auth.common.ApiOperations;
-import com.eshilov.auth.common.IntTest;
-import com.eshilov.auth.common.token.TokenPairResponseEntityAssertion;
+import com.eshilov.auth.testhelp.ApiOperations;
+import com.eshilov.auth.testhelp.IntTest;
+import com.eshilov.auth.testhelp.tokens.TokenPairResponseEntityAssertion;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class LogInIntTest extends IntTest {
 
-    @Autowired private AuthOperations authOperations;
+    @Autowired private TestAuthApi testAuthApi;
 
     @Autowired private ApiOperations apiOperations;
 
@@ -23,12 +23,12 @@ public class LogInIntTest extends IntTest {
     public void logInHappy() {
         // Given
         var signUpRequest = signUpRequest();
-        authOperations.signUp(signUpRequest);
+        testAuthApi.signUp(signUpRequest);
 
         var logInRequest = logInRequest(signUpRequest);
 
         // When
-        var logInResponseEntity = authOperations.logIn(logInRequest);
+        var logInResponseEntity = testAuthApi.logIn(logInRequest);
 
         // Then
         tokenPairResponseEntityAssertion.execute(logInResponseEntity, logInRequest.getUsername());
@@ -38,7 +38,7 @@ public class LogInIntTest extends IntTest {
     public void logInBadUsername() {
         // Given
         var signUpRequest = signUpRequest();
-        authOperations.signUp(signUpRequest);
+        testAuthApi.signUp(signUpRequest);
 
         var logInRequest = logInRequest(signUpRequest);
         logInRequest.setUsername(username());
@@ -54,7 +54,7 @@ public class LogInIntTest extends IntTest {
     public void logInBadPassword() {
         // Given
         var signUpRequest = signUpRequest();
-        authOperations.signUp(signUpRequest);
+        testAuthApi.signUp(signUpRequest);
 
         var logInRequest = logInRequest(signUpRequest);
         logInRequest.setPassword("bad password");

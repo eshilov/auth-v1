@@ -1,4 +1,4 @@
-package com.eshilov.auth.common.token;
+package com.eshilov.auth.testhelp.tokens;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

@@ -1,4 +1,4 @@
-package com.eshilov.auth.common.token;
+package com.eshilov.auth.testhelp.tokens;
 
 import static com.eshilov.auth.token.model.TokenConstants.TYPE_CLAIM_NAME;
 

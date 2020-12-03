@@ -1,9 +1,9 @@
 package com.eshilov.auth.token;
 
-import com.eshilov.auth.common.ApiOperations;
-import com.eshilov.auth.generated.api.TokenApi;
-import com.eshilov.auth.generated.model.RefreshTokenRequest;
+import com.eshilov.auth.generated.api.TokensApi;
+import com.eshilov.auth.generated.model.RefreshTokensRequest;
 import com.eshilov.auth.generated.model.TokenPair;
+import com.eshilov.auth.testhelp.ApiOperations;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +11,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class TokenOperations implements TokenApi {
+public class TestTokensApi implements TokensApi {
 
     private final ApiOperations apiOperations;
 
     @Override
-    public ResponseEntity<TokenPair> refreshToken(@Valid RefreshTokenRequest refreshTokenRequest) {
+    public ResponseEntity<TokenPair> refreshTokens(
+            @Valid RefreshTokensRequest refreshTokensRequest) {
         return apiOperations.postForResponseEntity(
-                refreshTokenPath, refreshTokenRequest, TokenPair.class);
+                refreshTokensPath, refreshTokensRequest, TokenPair.class);
     }
 }

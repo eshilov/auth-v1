@@ -1,23 +1,23 @@
 package com.eshilov.auth.auth;
 
-import static com.eshilov.auth.common.TestDataUtils.signUpRequest;
 import static com.eshilov.auth.generated.api.AuthApi.signUpPath;
+import static com.eshilov.auth.testhelp.TestDataUtils.signUpRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
-import com.eshilov.auth.common.ApiOperations;
-import com.eshilov.auth.common.IntTest;
 import com.eshilov.auth.generated.model.SignUpRequest;
 import com.eshilov.auth.generated.model.SignUpResponse;
+import com.eshilov.auth.testhelp.ApiOperations;
+import com.eshilov.auth.testhelp.IntTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 public class SignUpIntTest extends IntTest {
 
-    @Autowired private AuthOperations authOperations;
+    @Autowired private TestAuthApi testAuthApi;
 
     @Autowired private ApiOperations apiOperations;
 
@@ -27,7 +27,7 @@ public class SignUpIntTest extends IntTest {
         var request = signUpRequest();
 
         // When
-        var response = authOperations.signUp(request);
+        var response = testAuthApi.signUp(request);
 
         // Then
         assertSignUpResponse(response, request);
@@ -37,7 +37,7 @@ public class SignUpIntTest extends IntTest {
     public void signUpUsernameTaken() {
         // Given
         var initialRequest = signUpRequest();
-        authOperations.signUp(initialRequest);
+        testAuthApi.signUp(initialRequest);
 
         var username = initialRequest.getUsername();
         var request = signUpRequest();

@@ -6,7 +6,7 @@ import com.eshilov.auth.auth.operations.login.validation.LogInRequestValidator;
 import com.eshilov.auth.generated.model.LogInRequest;
 import com.eshilov.auth.generated.model.TokenPair;
 import com.eshilov.auth.token.TokenService;
-import com.eshilov.auth.token.operations.create.CreateTokenPairParams;
+import com.eshilov.auth.token.operations.create.CreateTokensRequest;
 import com.eshilov.auth.user.UserService;
 import java.util.function.Supplier;
 import lombok.NonNull;
@@ -44,8 +44,8 @@ public class LogInOperation {
     }
 
     private TokenPair createTokenPairForUsername(String username) {
-        var params = CreateTokenPairParams.builder().subject(username).build();
-        return tokenService.createTokenPair(params);
+        var params = CreateTokensRequest.builder().subject(username).build();
+        return tokenService.createTokens(params);
     }
 
     private Supplier<RuntimeException> badCredentialsExceptionSupplier() {
